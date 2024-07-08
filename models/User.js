@@ -4,7 +4,14 @@ import sequelize from '../plugins/sequelize.js';
 class User extends Model {};
 
 User.init({
-  balance: DataTypes.INTEGER
+  balance: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    defaultValue: 0,
+    validate: {
+      min: 0,
+    },
+  },
 }, {
   sequelize,
   modelName: 'users',
